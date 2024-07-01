@@ -1,0 +1,117 @@
+[gd_scene load_steps=15 format=3 uid="uid://dchklrtdrv0i0"]
+
+[ext_resource type="PackedScene" path="res://World/Bush.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ch1vtj04bnq2f" path="res://Player/Player.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bkyxhl8c1r3r3" path="res://World/GrassBackground.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ec3x36xiff88" path="res://World/DirtTileset.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://2lb5040g12r" path="res://World/CliffTileset.png" id="5"]
+[ext_resource type="PackedScene" path="res://World/Grass.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dk57k2wbg85j7" path="res://Enemies/Bat.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://UI/HealthUI.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://World/Tree.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://bqpf1s65gef50" path="res://Enemies/enemy_1.tscn" id="10_0cxyd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stq4n"]
+texture = ExtResource("4")
+
+[sub_resource type="TileSet" id="1"]
+sources/0 = SubResource("TileSetAtlasSource_stq4n")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_latum"]
+texture = ExtResource("5")
+
+[sub_resource type="TileSet" id="49"]
+sources/0 = SubResource("TileSetAtlasSource_latum")
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("3")
+region_enabled = true
+region_rect = Rect2(0, 0, 720, 432)
+
+[node name="DirtPathTileMap" type="TileMap" parent="."]
+position = Vector2(160, 90)
+tile_set = SubResource("1")
+format = 2
+
+[node name="DirtCliffTileMap" type="TileMap" parent="."]
+tile_set = SubResource("49")
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(144, 80)
+position_smoothing_enabled = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Player" parent="Node2D" instance=ExtResource("2")]
+position = Vector2(144, 80)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D/Player"]
+remote_path = NodePath("../../../Camera2D")
+
+[node name="Bushes" type="Node2D" parent="Node2D"]
+
+[node name="Bush" parent="Node2D/Bushes" instance=ExtResource("1")]
+position = Vector2(56, 40)
+
+[node name="Bush2" parent="Node2D/Bushes" instance=ExtResource("1")]
+position = Vector2(168, 104)
+
+[node name="Bush3" parent="Node2D/Bushes" instance=ExtResource("1")]
+position = Vector2(224, 40)
+
+[node name="Bush4" parent="Node2D/Bushes" instance=ExtResource("1")]
+position = Vector2(72, 104)
+
+[node name="Grass" type="Node2D" parent="Node2D"]
+
+[node name="Grass1" parent="Node2D/Grass" instance=ExtResource("6")]
+position = Vector2(168, 120)
+
+[node name="Grass2" parent="Node2D/Grass" instance=ExtResource("6")]
+position = Vector2(224, 56)
+
+[node name="Grass3" parent="Node2D/Grass" instance=ExtResource("6")]
+position = Vector2(16, 56)
+
+[node name="Grass4" parent="Node2D/Grass" instance=ExtResource("6")]
+position = Vector2(80, 72)
+
+[node name="Grass5" parent="Node2D/Grass" instance=ExtResource("6")]
+position = Vector2(8, 40)
+
+[node name="Trees" type="Node2D" parent="Node2D"]
+
+[node name="Tree" parent="Node2D/Trees" instance=ExtResource("9")]
+position = Vector2(296, 32)
+
+[node name="Tree2" parent="Node2D/Trees" instance=ExtResource("9")]
+position = Vector2(208, 168)
+
+[node name="Tree3" parent="Node2D/Trees" instance=ExtResource("9")]
+position = Vector2(48, 160)
+
+[node name="Bat" parent="Node2D" instance=ExtResource("7")]
+position = Vector2(24, 96)
+
+[node name="Bat2" parent="Node2D" instance=ExtResource("7")]
+position = Vector2(248, 136)
+
+[node name="Bat3" parent="Node2D" instance=ExtResource("7")]
+position = Vector2(200, 32)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("8")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 44.0
+offset_bottom = 43.0
+
+[node name="Enemy_1" parent="." instance=ExtResource("10_0cxyd")]
+position = Vector2(-20, 197)
