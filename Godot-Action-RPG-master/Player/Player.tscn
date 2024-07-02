@@ -1,10 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://ch1vtj04bnq2f"]
+[gd_scene load_steps=53 format=3 uid="uid://ch1vtj04bnq2f"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ckbetc048hkjv" path="res://Player/Player.png" id="2"]
-[ext_resource type="PackedScene" path="res://Overlap/Hitbox.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b31jn6jfsc07m" path="res://Overlap/Hitbox.tscn" id="3"]
 [ext_resource type="Script" path="res://Player/SwordHitbox.gd" id="4"]
-[ext_resource type="PackedScene" path="res://Overlap/Hurtbox.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://b5wg3mgnt6ev" path="res://Shadows/MediumShadow.png" id="6"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
@@ -620,12 +619,10 @@ transitions = ["Idle", "Run", SubResource("38"), "Run", "Idle", SubResource("39"
 graph_offset = Vector2(0, -25.2827)
 
 [sub_resource type="CapsuleShape2D" id="46"]
-radius = 6.0
-height = 12.0
+height = 28.0
 
-[sub_resource type="CapsuleShape2D" id="47"]
-radius = 3.0
-height = 6.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_lm6o8"]
+radius = 11.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -663,22 +660,28 @@ position = Vector2(0, -4)
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("3")]
 position = Vector2(15, 0)
-collision_mask = 8
+collision_layer = 2
+collision_mask = 10
 script = ExtResource("4")
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-position = Vector2(0, -1.4484e-05)
+position = Vector2(5, -1)
 shape = SubResource("46")
 disabled = true
 
-[node name="Hurtbox" parent="." instance=ExtResource("5")]
-collision_layer = 4
+[node name="player_hitbox" type="Area2D" parent="."]
+position = Vector2(2, -2)
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(0, -4)
-shape = SubResource("47")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(-2, -5)
+shape = SubResource("CircleShape2D_lm6o8")
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[node name="Attack_CD" type="Timer" parent="."]
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="Attack_CD" to="." method="_on_attack_cd_timeout"]
 
 [editable path="HitboxPivot/SwordHitbox"]
-[editable path="Hurtbox"]

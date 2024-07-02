@@ -5,6 +5,13 @@ extends CharacterBody2D
 @export var ROLL_SPEED = 120
 @export var FRICTION = 500
 
+var enemy_inattackRange = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+
+var attack_InProgress = false
+
 enum {
 	MOVE,
 	ROLL,
@@ -19,7 +26,6 @@ var stats = PlayerStats
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var swordHitbox = $HitboxPivot/SwordHitbox
-@onready var hurtbox = $Hurtbox
 
 func _ready():
 	randomize()
@@ -35,6 +41,14 @@ func _physics_process(delta):
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
+			
+	enemy_attack()
+	
+	if health <= 0:
+		player_alive = false
+		health = 0
+		print("player dead")
+		self.queue_free()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -62,13 +76,16 @@ func move_state(delta):
 	
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
+		GlobalScript.player_current_attack = true
+		attack_InProgress = true
+		
 	
 func roll_state(delta):
 	velocity = roll_vector * ROLL_SPEED
 	animationState.travel("Roll")
 	move()
 	
-func attack_state(delta):
+func attack_state(_delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 	
@@ -84,7 +101,28 @@ func roll_animation_finished():
 func attack_animation_finished():
 	state = MOVE
 
-func _on_Hurtbox_area_entered(area):
-	stats.health -= area.damage
-	hurtbox.start_invincibility(0.5)
-	hurtbox.create_hit_effect()
+
+func player():
+	pass
+
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_inattackRange = true
+		
+
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_inattackRange = false
+		
+
+func enemy_attack():
+	if enemy_inattackRange and enemy_attack_cooldown == true:
+		health = health - 20
+		enemy_attack_cooldown = false
+		$Attack_CD.start()
+		print(health)
+
+func _on_attack_cd_timeout():
+	enemy_attack_cooldown = true

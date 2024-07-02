@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dchklrtdrv0i0"]
+[gd_scene load_steps=15 format=3 uid="uid://dchklrtdrv0i0"]
 
 [ext_resource type="PackedScene" path="res://World/Bush.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://ch1vtj04bnq2f" path="res://Player/Player.tscn" id="2"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ec3x36xiff88" path="res://World/DirtTileset.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://2lb5040g12r" path="res://World/CliffTileset.png" id="5"]
 [ext_resource type="PackedScene" path="res://World/Grass.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://dk57k2wbg85j7" path="res://Enemies/Bat.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://UI/HealthUI.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://World/Tree.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bqpf1s65gef50" path="res://Enemies/enemy_1.tscn" id="10_0cxyd"]
@@ -94,15 +93,6 @@ position = Vector2(208, 168)
 
 [node name="Tree3" parent="Node2D/Trees" instance=ExtResource("9")]
 position = Vector2(48, 160)
-
-[node name="Bat" parent="Node2D" instance=ExtResource("7")]
-position = Vector2(24, 96)
-
-[node name="Bat2" parent="Node2D" instance=ExtResource("7")]
-position = Vector2(248, 136)
-
-[node name="Bat3" parent="Node2D" instance=ExtResource("7")]
-position = Vector2(200, 32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
