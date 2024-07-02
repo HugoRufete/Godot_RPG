@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dchklrtdrv0i0"]
+[gd_scene load_steps=19 format=3 uid="uid://dchklrtdrv0i0"]
 
 [ext_resource type="PackedScene" path="res://World/Bush.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://ch1vtj04bnq2f" path="res://Player/Player.tscn" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://World/Tree.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bqpf1s65gef50" path="res://Enemies/enemy_1.tscn" id="10_0cxyd"]
 [ext_resource type="PackedScene" uid="uid://he6v8l57eo84" path="res://Enemies/enemy_2.tscn" id="11_pkl83"]
+[ext_resource type="PackedScene" uid="uid://c4bd7lrauu371" path="res://curación.tscn" id="12_c344a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stq4n"]
 texture = ExtResource("4")
@@ -140,3 +141,6 @@ position = Vector2(-20, 197)
 
 [node name="Enemy_2" parent="." instance=ExtResource("11_pkl83")]
 position = Vector2(180, 205)
+
+[node name="Sprite2D" parent="." instance=ExtResource("12_c344a")]
+position = Vector2(149, 7)

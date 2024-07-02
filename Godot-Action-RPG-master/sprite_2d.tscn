@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://debodnnvqra6k"]
+
+[ext_resource type="Texture2D" uid="uid://bhsw8ilp06y38" path="res://UI/HeartUIEmpty.png" id="1_g5umt"]
+[ext_resource type="Script" path="res://CuraciónJugador.gd" id="2_ijgiy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk8hp"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_g5umt")
+script = ExtResource("2_ijgiy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jk8hp")

@@ -118,7 +118,6 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemy_inattackRange = true
-		
 
 
 func _on_player_hitbox_body_exited(body):
