@@ -1,13 +1,19 @@
 extends CharacterBody2D
 
+class_name  Player
+
+
 @export var ACCELERATION = 500
 @export var MAX_SPEED = 80
 @export var ROLL_SPEED = 120
 @export var FRICTION = 500
 
+
+
 var enemy_inattackRange = false
 var enemy_attack_cooldown = true
-var health = 100
+var Health = 100
+
 var player_alive = true
 
 var attack_InProgress = false
@@ -26,12 +32,14 @@ var stats = PlayerStats
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var swordHitbox = $HitboxPivot/SwordHitbox
+@onready var progress_bar = $ProgressBar
 
 func _ready():
 	randomize()
 	stats.connect("no_health", Callable(self, "queue_free"))
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector
+	progress_bar.value = Health
 
 func _physics_process(delta):
 	match state:
@@ -44,11 +52,12 @@ func _physics_process(delta):
 			
 	enemy_attack()
 	
-	if health <= 0:
+	if Health <= 0:
 		player_alive = false
-		health = 0
+		Health = 0
 		print("player dead")
 		self.queue_free()
+	
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -119,10 +128,11 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattackRange and enemy_attack_cooldown == true:
-		health = health - 20
+		Health = Health - 20
 		enemy_attack_cooldown = false
 		$Attack_CD.start()
-		print(health)
+		print(Health)
+		progress_bar.value = Health
 
 func _on_attack_cd_timeout():
 	enemy_attack_cooldown = true
