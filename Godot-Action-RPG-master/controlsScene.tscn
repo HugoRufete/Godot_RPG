@@ -1,24 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdctpqhbbjqkt"]
+[gd_scene load_steps=3 format=3 uid="uid://bljoem7qv62t2"]
 
-[ext_resource type="Script" path="res://menu_script.gd" id="1_3am6l"]
+[ext_resource type="Script" path="res://controlsSceneScript.gd" id="1_vt8s2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43np3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60kv1"]
 bg_color = Color(0.698664, 0.596564, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Menu" type="Control"]
-process_mode = 3
-clip_children = 1
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3am6l")
+script = ExtResource("1_vt8s2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -50,7 +48,34 @@ offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-theme_override_styles/panel = SubResource("StyleBoxFlat_43np3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_60kv1")
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+offset_left = 441.0
+offset_top = 204.0
+offset_right = 721.0
+offset_bottom = 250.0
+scale = Vector2(1.5, 1.5)
+text = "Up/Down/Left/Right = Movement"
+editable = false
+
+[node name="TextEdit2" type="TextEdit" parent="CanvasLayer"]
+offset_left = 509.0
+offset_top = 298.0
+offset_right = 694.0
+offset_bottom = 336.0
+scale = Vector2(1.5, 1.5)
+text = "Shift / Space = Roll"
+editable = false
+
+[node name="TextEdit3" type="TextEdit" parent="CanvasLayer"]
+offset_left = 511.0
+offset_top = 393.0
+offset_right = 696.0
+offset_bottom = 431.0
+scale = Vector2(1.5, 1.5)
+text = "E / Q = Attack"
+editable = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 texture_filter = 1
@@ -59,10 +84,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -150.0
-offset_right = -34.0
-offset_bottom = -49.0
+offset_left = -167.0
+offset_top = 114.0
+offset_right = -53.0
+offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -74,22 +99,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0980392, 1, 0.0980392, 1)
 theme_override_colors/font_pressed_color = Color(0.446777, 0.446777, 0.446777, 1)
-text = "Play"
-
-[node name="Options_Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0980392, 1, 0.0980392, 1)
-theme_override_colors/font_pressed_color = Color(0.447059, 0.447059, 0.447059, 1)
-text = "Controls
-"
-
-[node name="Exit_Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0980392, 1, 0.0980392, 1)
-theme_override_colors/font_pressed_color = Color(0.447059, 0.447059, 0.447059, 1)
-text = "Exit
-"
+text = "Back to Menu"
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Play_Button" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Options_Button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]

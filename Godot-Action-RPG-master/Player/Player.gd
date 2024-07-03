@@ -49,14 +49,11 @@ func _physics_process(delta):
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
-			
-	enemy_attack()
-	
 	if Health <= 0:
 		player_alive = false
 		Health = 0
 		print("player dead")
-		self.queue_free()
+		
 	
 
 func move_state(delta):

@@ -625,7 +625,8 @@ height = 28.0
 radius = 11.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 2
+collision_mask = 25
 script = ExtResource("1")
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
@@ -657,23 +658,23 @@ parameters/Roll/blend_position = Vector2(0, 1)
 parameters/Run/blend_position = Vector2(0, 1)
 
 [node name="HitboxPivot" type="Marker2D" parent="."]
+visibility_layer = 9
 position = Vector2(0, -4)
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("3")]
 position = Vector2(15, 0)
 collision_layer = 2
-collision_mask = 10
+monitoring = false
 script = ExtResource("4")
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 position = Vector2(5, -1)
 shape = SubResource("46")
-disabled = true
 
 [node name="player_hitbox" type="Area2D" parent="."]
 position = Vector2(2, -2)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
 position = Vector2(-2, -5)

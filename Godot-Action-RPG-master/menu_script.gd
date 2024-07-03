@@ -6,7 +6,7 @@ func _on_play_button_pressed():
 
 
 func _on_options_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://controlsScene.tscn")
 
 
 func _on_exit_button_pressed():

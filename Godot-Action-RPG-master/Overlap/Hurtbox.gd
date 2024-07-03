@@ -4,7 +4,6 @@ const HitEffect = preload("res://Effects/HitEffect.tscn")
 
 var invincible = false: set = set_invincible
 
-@onready var timer = $Timer
 
 signal invincibility_start
 signal invincibility_ended
@@ -18,7 +17,6 @@ func set_invincible(value):
 
 func start_invincibility(duration):
 	self.invincible = true
-	timer.start(duration)
 
 func create_hit_effect():
 	var effect = HitEffect.instantiate()
