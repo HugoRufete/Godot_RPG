@@ -713,7 +713,7 @@ visible = false
 position = Vector2(465, 85)
 
 [node name="Enemy_2" parent="." instance=ExtResource("11_pkl83")]
-position = Vector2(-1011, 111)
+position = Vector2(-1010, 108)
 
 [node name="Sprite2D" parent="." instance=ExtResource("12_c344a")]
 position = Vector2(82, -6)

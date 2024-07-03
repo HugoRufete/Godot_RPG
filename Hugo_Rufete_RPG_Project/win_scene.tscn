@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bowc6p7biq4ic"]
+[gd_scene load_steps=3 format=3 uid="uid://bowc6p7biq4ic"]
+
+[ext_resource type="Script" path="res://win_scene_script.gd" id="1_ivkjg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk6qt"]
 bg_color = Color(0.698664, 0.596564, 0, 1)
@@ -14,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ivkjg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -80,3 +83,5 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0980392, 1, 0.0980392, 1)
 theme_override_colors/font_pressed_color = Color(0.446777, 0.446777, 0.446777, 1)
 text = "Back to  Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Play_Button" to="." method="_on_play_button_pressed"]

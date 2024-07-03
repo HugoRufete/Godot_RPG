@@ -663,13 +663,14 @@ position = Vector2(0, -4)
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("3")]
 position = Vector2(15, 0)
-collision_layer = 2
+collision_layer = 32
 monitoring = false
 script = ExtResource("4")
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 position = Vector2(5, -1)
 shape = SubResource("46")
+disabled = true
 
 [node name="player_hitbox" type="Area2D" parent="."]
 position = Vector2(2, -2)

@@ -53,6 +53,7 @@ func _physics_process(delta):
 		player_alive = false
 		Health = 0
 		print("player dead")
+		get_tree().change_scene_to_file("res://EndScene.tscn")
 		
 	
 
@@ -115,6 +116,7 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemy_inattackRange = true
+		enemy_attack()
 
 
 func _on_player_hitbox_body_exited(body):
@@ -124,7 +126,7 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattackRange and enemy_attack_cooldown == true:
-		Health = Health - 20
+		Health = Health - 10
 		enemy_attack_cooldown = false
 		$Attack_CD.start()
 		print(Health)
@@ -132,3 +134,7 @@ func enemy_attack():
 
 func _on_attack_cd_timeout():
 	enemy_attack_cooldown = true
+
+
+func _on_win_area_body_entered(body):
+	pass # Replace with function body.
